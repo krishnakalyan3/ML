@@ -24,6 +24,7 @@ for iter = 1:num_iters
     e = h -y;
     theta_change = (alpha / m)* X'*e;
     theta = theta - theta_change; 
+
     % Save the cost J in every iteration    
     J_history(iter) = computeCost(X, y, theta);
 
