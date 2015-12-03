@@ -5,27 +5,3 @@ A =rand(5,3)
 
 % Random Matrix with binary elements 0,1
 A = randi([0 1], 5, 5);
-
-
-k = zeros(1,64)
-i = 1;
-for ci = C
-    for si = sigma
-        
-        train = svmTrain(X, y, ci, @(x1, x2) gaussianKernel(x1, x2, si));
-        pred = svmPredict(train, X);
-        error = mean(double(pred ~= y))
-        k(i) = [ci,si,error]
-        i = i +1;
-    end
-end
-
-
-train = svmTrain(X, y, C(ci), @(x1, x2) gaussianKernel(x1, x2, sigma(si)));
-        pred = svmPredict(train, X);
-        error = mean(double(pred ~= y))
-        k(ci,si) = [ci si error]
-
-
-        k(ci,1) = C(ci) ;
-        k(ci,2) = sigma(si);
