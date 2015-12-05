@@ -30,12 +30,13 @@ m = [];
 for ci = C
     for si = sigma
         train = svmTrain(X, y, ci, @(x1, x2) gaussianKernel(x1, x2, si));
-        pred = svmPredict(train, X);
-        error = mean(double(pred ~= y))    
+        pred = svmPredict(train, Xval);
+        error = mean(double(pred ~= yval))    
         m = [m ; [C,sigma,error]];    
     end
 end
 
+m
 % =========================================================================
 
 end
