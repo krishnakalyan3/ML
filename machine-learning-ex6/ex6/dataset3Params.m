@@ -26,17 +26,24 @@ C =  [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 sigma =  [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
 m = [];
+errorall = [100];
+newC =0;
+newsigma = 0;
 
 for ci = C
     for si = sigma
         train = svmTrain(X, y, ci, @(x1, x2) gaussianKernel(x1, x2, si));
         pred = svmPredict(train, Xval);
         error = mean(double(pred ~= yval))    
-        m = [m ; [C,sigma,error]];    
+        if min(errorall) > error
+            newC = ci;
+            newsigma = si;
+        errorall(end+1) = error
     end
 end
 
-m
+C = newC;
+sigma= newsigma;
 % =========================================================================
 
 end
