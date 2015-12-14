@@ -20,12 +20,14 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-[m n]=size(X)
-
-diff = bsxfun('minus', X, centroids);
-[val, idx] = min(norm(diff, 2, 'rows'));
 
 
+for i = 1:length(X)
+   diffs = centroids - repmat(X(i,:),K,1)
+   dist = sum(diffs .^ 2,2) 
+   [val idx(i)] = min(dist)
+    
+end
 
 
 % =============================================================

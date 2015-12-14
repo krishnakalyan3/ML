@@ -37,6 +37,8 @@ initial_centroids = [3 3; 6 2; 8 5];
 
 % Find the closest centroids for the examples using the
 % initial_centroids
+X
+
 idx = findClosestCentroids(X, initial_centroids);
 
 fprintf('Closest centroids for the first 3 examples: \n')
